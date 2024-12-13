@@ -1,0 +1,56 @@
+﻿@model IEnumerable<Entities.Medicos>
+
+@{
+    ViewBag.Title = "Lista de Médicos";
+}
+
+<h2 class="text-center">@ViewBag.Title</h2>
+
+<table class="table table-hover table-striped">
+    <thead class="table-primary">
+        <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Especialidad</th>
+            <th>Teléfono</th>
+            <th class="text-center">Acciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model != null && Model.Any())
+        {
+            foreach (var medico in Model)
+            {
+                <tr>
+                    <td>@medico.MedicoID</td>
+                    <td>@medico.Nombre</td>
+                    <td>@medico.Especialidad</td>
+                    <td>@medico.Telefono</td>
+                    <td class="text-center">
+                        <a href="@Url.Action("Details", "Home", new { id = medico.MedicoID })" class="btn btn-outline-info btn-sm" title="Ver Detalles">
+                            <i class="bi bi-eye"></i>
+                        </a>
+                        <a href="@Url.Action("CUDForm", "Home", new { id = medico.MedicoID })" class="btn btn-outline-success btn-sm" title="Editar">
+                            <i class="bi bi-pencil"></i>
+                        </a>
+                        <a href="@Url.Action("Delete", "Home", new { id = medico.MedicoID })" class="btn btn-outline-danger btn-sm" title="Eliminar" onclick="return confirm('¿Está seguro de eliminar este médico?')">
+                            <i class="bi bi-trash"></i>
+                        </a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-center">No hay médicos registrados.</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<p class="text-end">
+    <a href="@Url.Action("CUDForm", "Home")" class="btn btn-outline-primary">
+        <i class="bi bi-person-plus"></i> Nuevo Médico
+    </a>
+</p>

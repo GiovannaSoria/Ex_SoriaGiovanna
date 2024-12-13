@@ -1,0 +1,30 @@
+﻿@model Entities.Medicos
+
+@{
+    ViewBag.Title = "Detalles del Médico";
+}
+
+<h2>Detalles del Médico</h2>
+
+<table class="table table-bordered">
+    <tr>
+        <th>ID</th>
+        <td>@Model.MedicoID</td>
+    </tr>
+    <tr>
+        <th>Nombre</th>
+        <td>@Model.Nombre</td>
+    </tr>
+    <tr>
+        <th>Especialidad</th>
+        <td>@Model.Especialidad</td>
+    </tr>
+    <tr>
+        <th>Teléfono</th>
+        <td>@Model.Telefono</td>
+    </tr>
+</table>
+
+<p>
+    <a href="@Url.Action("List", "Home")" class="btn btn-secondary">Volver a la Lista</a>
+</p>

@@ -1,0 +1,34 @@
+﻿@model Entities.Medicos
+@{
+    ViewBag.Title = Model.MedicoID > 0 ? "Editar Médico" : "Crear Nuevo Médico";
+}
+
+<h2>@ViewBag.Title</h2>
+
+@using (Html.BeginForm("CUD", "Home", FormMethod.Post))
+{
+    @Html.AntiForgeryToken()
+    @Html.HiddenFor(m => m.MedicoID)
+
+    <div class="form-group">
+        <label for="Nombre">Nombre:</label>
+        @Html.TextBoxFor(m => m.Nombre, new { @class = "form-control", placeholder = "Nombre del médico", required = "required" })
+    </div>
+
+    <div class="form-group">
+        <label for="Especialidad">Especialidad:</label>
+        @Html.TextBoxFor(m => m.Especialidad, new { @class = "form-control", placeholder = "Especialidad del médico", required = "required" })
+    </div>
+
+    <div class="form-group">
+        <label for="Telefono">Teléfono:</label>
+        @Html.TextBoxFor(m => m.Telefono, new { @class = "form-control", placeholder = "Teléfono del médico" })
+    </div>
+
+    <button type="submit" name="CreateBtn" value="true" class="btn btn-primary">Guardar</button>
+    if (Model.MedicoID > 0)
+    {
+        <button type="submit" name="UpdateBtn" value="true" class="btn btn-warning">Actualizar</button>
+    }
+    <a href="@Url.Action("List", "Home")" class="btn btn-secondary">Cancelar</a>
+}
